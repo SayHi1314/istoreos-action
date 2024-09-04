@@ -56,12 +56,12 @@ jobs:
         docker_include: ".+"
         docker_prune: "True"
         docker_clean: "True"
-        apt_prune: "False"
-        apt_clean: "False"
+        apt_prune: "True"
+        apt_clean: "True"
         homebrew_prune: "True"
         homebrew_clean: "True"
-        npm_prune: "False"
-        npm_clean: "False"
+        npm_prune: "True"
+        npm_clean: "True"
         os_swap: "True"
 
     - name: Freeing up disk space
