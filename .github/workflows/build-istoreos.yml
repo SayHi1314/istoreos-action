@@ -116,15 +116,14 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         current_working_directory=$(pwd)
         echo "当前工作目录是: $current_working_directory"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        sudo mkdir -p ./workdir
+        sudo chown $USER:$GROUPS ./workdir
 
     - name: 克隆源码
-      working-directory: /workdir
+      working-directory: ./workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: 缓存构建动作
       uses: klever1988/cachewrtbuild@main
@@ -143,10 +142,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新 feeds
-      run: 
-          current_working_directory1=$(pwd)
-          echo "当前工作目录是:$current_working_directory1"
-          cd openwrt && ./scripts/feeds update -a
+      run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
