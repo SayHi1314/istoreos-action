@@ -83,6 +83,12 @@ jobs:
         current_dir=$(pwd)
         echo "当前工作目录是: $current_dir"
         ls
+        sudo mkdir -p /mnt/istoreos-action
+        sudo cp -r * /mnt/istoreos-action
+        cd /mnt/istoreos-action
+        current_dir1=$(pwd)
+        echo "当前工作目录是: $current_dir1"
+        ls
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
