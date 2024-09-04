@@ -131,7 +131,10 @@ jobs:
       env:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
-        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH ./openwrt/$FEEDS_CONF
+        current_working_directory1=$(pwd)
+        echo "当前工作目录是: $current_working_directory1"
+        ls
+        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH /home/runner/work/istoreos-action/istoreos-action/openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
