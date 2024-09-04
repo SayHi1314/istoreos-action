@@ -136,7 +136,7 @@ jobs:
         echo "当前工作目录是: $current_working_directory1"
         ls
         [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
-        chmod +x $DIY_P1_SH
+        chmod +x ../$DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
@@ -155,7 +155,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE_PATH ] && mv $CONFIG_FILE_PATH openwrt/$CONFIG_FILE
-        chmod +x $DIY_P2_SH
+        chmod +x ../$DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
