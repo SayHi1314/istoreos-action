@@ -128,24 +128,28 @@ jobs:
 
 
     - name: 加载自定义 feeds
+      working-directory: ./workdir
       env:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
         current_working_directory1=$(pwd)
         echo "当前工作目录是: $current_working_directory1"
         ls
-        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH /home/runner/work/istoreos-action/istoreos-action/openwrt/$FEEDS_CONF
+        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新 feeds
+      working-directory: ./workdir
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
+      working-directory: ./workdir
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 加载自定义配置
+      working-directory: ./workdir
       env:
         CONFIG_FILE_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.CONFIG_FILE }}
       run: |
@@ -163,6 +167,7 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: 下载软件包
+      working-directory: ./workdir
       id: package
       run: |
         cd openwrt
@@ -172,6 +177,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: 编译固件
+      working-directory: ./workdir
       id: compile
       run: |
         cd openwrt
