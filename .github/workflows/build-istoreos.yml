@@ -114,6 +114,8 @@ jobs:
         #sudo -E apt-get -qq clean
         echo "------------------------------- 设置工作目录及时区 -------------------------------"
         sudo timedatectl set-timezone "$TZ"
+        current_working_directory=$(pwd)
+        echo "当前工作目录是: $current_working_directory"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
@@ -121,8 +123,6 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git config --global http.sslverify false
-        git config --global https.sslverify false
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
@@ -143,7 +143,10 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: 更新 feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      run: 
+          current_working_directory1=$(pwd)
+          echo "当前工作目录是:$current_working_directory1"
+          cd openwrt && ./scripts/feeds update -a
 
     - name: 安装 feeds
       run: cd openwrt && ./scripts/feeds install -a
