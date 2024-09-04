@@ -121,6 +121,8 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
+        git config --global http.sslverify false
+        git config --global https.sslverify false
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
