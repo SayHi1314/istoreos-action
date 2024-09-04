@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
 
     steps:
-    - name: 准备完成
+    - name: 准备完成了
       uses: actions/checkout@main
 
     - name: 检查服务器配置
