@@ -130,7 +130,7 @@ jobs:
       with:
         ccache: 'true'
         mixkey: ${{ matrix.os }}-${{ matrix.ARCHITECTURE }}-${{ matrix.REPO_BRANCH }}
-        prefix: ${{ github.workspace }}/openwrt
+        prefix: openwrt
 
     - name: 加载自定义 feeds
       env:
