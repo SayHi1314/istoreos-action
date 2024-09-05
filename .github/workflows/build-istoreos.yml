@@ -128,14 +128,13 @@ jobs:
 
 
     - name: 加载自定义 feeds
-      working-directory: ./workdir
       env:
         FEEDS_CONF_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.FEEDS_CONF }}
       run: |
         current_working_directory1=$(pwd)
         echo "当前工作目录是: $current_working_directory1"
         ls
-        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH openwrt/$FEEDS_CONF
+        [ -e $FEEDS_CONF_PATH ] && mv $FEEDS_CONF_PATH workdir/openwrt/$FEEDS_CONF
         chmod +x ../$DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
@@ -149,12 +148,11 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 加载自定义配置
-      working-directory: ./workdir
       env:
         CONFIG_FILE_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.CONFIG_FILE }}
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE_PATH ] && mv $CONFIG_FILE_PATH openwrt/$CONFIG_FILE
+        [ -e $CONFIG_FILE_PATH ] && mv $CONFIG_FILE_PATH workdir/openwrt/$CONFIG_FILE
         chmod +x ../$DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
