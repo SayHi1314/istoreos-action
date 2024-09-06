@@ -12,7 +12,7 @@ on:
    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/istoreos/istoreos
   #https://github.com/istoreos/istoreos
   # REPO_BRANCH: main
   FEEDS_CONF: feeds.conf
@@ -31,8 +31,8 @@ jobs:
     strategy:
       matrix:
         REPO_BRANCH:
-           - master
-          #- istoreos-22.03
+           #- master
+          - istoreos-22.03
           # - istoreos-23.05
         ARCHITECTURE:
           #- rk33xx
@@ -125,7 +125,15 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
+        git clone https://github.com/kooiot/openwrt.git openwrt0
         ls
+        
+    - name: 添加驱动
+      working-directory: ./workdir
+      run: |
+        mv openwrt0/package/kernel/aic8800 openwrt/package/kernel/
+        mv openwrt0/package/firmware/aic8800-firmware openwrt/package/firmware/
+
         
     - name: 缓存构建动作
       uses: klever1988/cachewrtbuild@main
