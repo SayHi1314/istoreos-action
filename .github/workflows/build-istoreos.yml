@@ -151,8 +151,8 @@ jobs:
       working-directory: ./workdir
       run: |
         cd openwrt && ./scripts/feeds update -a
-        #rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
-        #ls feeds/smpackage/ 
+        rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+        ls feeds/smpackage/ 
 
            
     - name: 安装 feeds
