@@ -159,6 +159,9 @@ jobs:
       working-directory: ./workdir
       run: cd openwrt && ./scripts/feeds install -a
 
+    - name: 修改banner
+      run: mv -f banner workdir/openwrt/package/base-files/files/etc/
+
     - name: 加载自定义配置
       env:
         CONFIG_FILE_PATH: ${{ matrix.ARCHITECTURE }}/${{ env.CONFIG_FILE }}
