@@ -12,8 +12,7 @@ on:
    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  #https://github.com/istoreos/istoreos
+  REPO_URL: https://github.com/istoreos/istoreos
   # REPO_BRANCH: main
   FEEDS_CONF: feeds.conf
   CONFIG_FILE: .config
@@ -125,6 +124,9 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
+        git clone https://github.com/coolsnowwolf/lede lede
+        mv lede/package/lean/aic8800 openwrt/package/diy
+        cd openwet/package/diy
         ls
         
         
