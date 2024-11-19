@@ -126,7 +126,7 @@ jobs:
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         git clone https://github.com/coolsnowwolf/lede lede
         mv lede/package/lean/aic8800 openwrt/package/diy
-        cd openwet/package/diy
+        cd openwrt/package/diy
         ls
         
         
