@@ -12,7 +12,8 @@ on:
    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/istoreos/istoreos
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  #https://github.com/istoreos/istoreos
   # REPO_BRANCH: main
   FEEDS_CONF: feeds.conf
   CONFIG_FILE: .config
@@ -30,8 +31,8 @@ jobs:
     strategy:
       matrix:
         REPO_BRANCH:
-          #- master
-          - istoreos-22.03
+          - master
+          #- istoreos-22.03
           # - istoreos-23.05
         ARCHITECTURE:
           #- rk33xx
@@ -124,12 +125,6 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
-        git clone https://github.com/coolsnowwolf/lede lede
-        sudo apt install libfuse-dev
-        ls
-        mv lede/package/lean/aic8800 openwrt/package/diy/
-        cd openwrt/package/diy
-        ls
         
         
     - name: 缓存构建动作
