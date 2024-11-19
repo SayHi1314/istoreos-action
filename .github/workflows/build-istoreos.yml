@@ -30,8 +30,8 @@ jobs:
     strategy:
       matrix:
         REPO_BRANCH:
-           - master
-          #- istoreos-22.03
+          #- master
+          - istoreos-22.03
           # - istoreos-23.05
         ARCHITECTURE:
           #- rk33xx
@@ -125,6 +125,7 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         git clone https://github.com/coolsnowwolf/lede lede
+        ls
         mv lede/package/lean/aic8800 openwrt/package/diy/
         cd openwrt/package/diy
         ls
