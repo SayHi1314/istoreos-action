@@ -125,6 +125,7 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b ${{ matrix.REPO_BRANCH }} openwrt
         git clone https://github.com/coolsnowwolf/lede lede
+        sudo apt install libfuse-dev
         ls
         mv lede/package/lean/aic8800 openwrt/package/diy/
         cd openwrt/package/diy
