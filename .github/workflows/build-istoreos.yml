@@ -12,7 +12,7 @@ on:
    - cron: 0 16 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/SayHi1314/lede.git
   #https://github.com/istoreos/istoreos
   # REPO_BRANCH: main
   FEEDS_CONF: feeds.conf
@@ -31,7 +31,8 @@ jobs:
     strategy:
       matrix:
         REPO_BRANCH:
-           - master
+           - new
+          #- master
           #- istoreos-22.03
           # - istoreos-23.05
         ARCHITECTURE:
