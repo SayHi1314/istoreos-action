@@ -152,6 +152,7 @@ jobs:
       run: |
         cd openwrt && ./scripts/feeds update -a
         rm -rf feeds/luci/applications/luci-app-openclash
+        ls feeds/luci/applications/
         rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
         ls feeds/smpackage/ 
 
